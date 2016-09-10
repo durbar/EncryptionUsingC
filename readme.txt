@@ -1,0 +1,1 @@
+C program to encrypt any data and save cipher data into any file. And decrypt cipher data to get original data. It uses matrix algorithm to encrypt or decrypt the data.
