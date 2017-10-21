@@ -11,37 +11,30 @@
 #include<windows.h>
 
 COORD coord={0,0};
-void gotoxy(int x,int y)
- {
+void gotoxy(int x,int y) {
     coord.X=x;
     coord.Y=y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
  }
-void delay(unsigned int msec)
-{
+void delay(unsigned int msec) {
     clock_t goal =msec +clock();
     while(goal>clock());
 }
-struct matrix
-{
+struct matrix {
     long int A[2][2];
 };
-void main()
-{
+void main() {
     int choice,i,count=0;
     system("COLOR 72");
     printf("Application is Initializing");
-    for(i=0;i<15;i++)
-    {
-        if(i==14)
-        {
+    for(i=0;i<15;i++) {
+        if(i==14) {
             count++;
             i=0;
             system("cls");
             printf("Application is Initializing");
         }
-        if(count == 4)
-        {
+        if(count == 4) {
             printf("...............");
             break;
         }
@@ -71,8 +64,7 @@ void main()
     printf("ENTER HERE : ");
     scanf("%d",&choice);
 
-    switch(choice)
-    {
+    switch(choice) {
         case 1:{
             system("cls");
             system("COLOR 74");
@@ -88,10 +80,8 @@ void main()
         printf("WELCOME TO ENCRYPTION OF DATA");
         gotoxy(2,3);
         printf("ENTER DATA TO BE ENCRYPT : ");
-        while((c=getchar())!='\n')
-        {
-            if(counts>=capacity)
-            {
+        while((c=getchar())!='\n') {
+            if(counts>=capacity) {
                 capacity=capacity+2;
                 tes=(char *)realloc(str,capacity*sizeof(char));
                 str=tes;
@@ -104,12 +94,9 @@ void main()
         else
             m=((strlen(str))/4)+1;
         struct matrix mat[m],multi[m];
-        for(i=0;i<m;i++)
-        {
-            for(j=0;j<2;j++)
-            {
-                for(k=0;k<2;k++)
-                {
+        for(i=0;i<m;i++) {
+            for(j=0;j<2;j++) {
+                for(k=0;k<2;k++) {
                     if(j==1 && k==0)
                         test=3;
                     else if(j==0 && k==1)
@@ -120,8 +107,7 @@ void main()
                         test=4;
                     if(i==(m-1) && ((i*4)+test)>strlen(str))
                         mat[i].A[j][k]=32;
-                    else
-                    {
+                    else {
                         mat[i].A[j][k]=str[p];
                         p++;
                     }
@@ -133,22 +119,17 @@ void main()
         printf("ENTER PASSWARD (2 X 2) MATRIX");
 
         int pasx=2,pasy=7;
-        for(j=0;j<2;j++)
-        {
-            for(k=0;k<2;k++)
-            {
+        for(j=0;j<2;j++) {
+            for(k=0;k<2;k++) {
                 gotoxy(pasx,pasy);
                 scanf("%ld",&pass[j][k]);
                 pasx=5;
             }
             pasx=2;pasy=9;
         }
-        for(i=0;i<m;i++)
-        {
-            for(j=0;j<2;j++)
-            {
-                for(k=0;k<2;k++)
-                {
+        for(i=0;i<m;i++) {
+            for(j=0;j<2;j++) {
+                for(k=0;k<2;k++) {
                     for(n=0;n<2;n++)
                         sum=sum+(mat[i].A[j][n])*pass[n][k];
                         multi[i].A[j][k]=sum;
@@ -167,12 +148,9 @@ void main()
         p=fopen(in,"w");
         gotoxy(2,13);
         printf("YOUR CIPHER TEXT IS : ");
-        for(i=0;i<m;i++)
-        {
-            for(j=0;j<2;j++)
-            {
-                for(k=0;k<2;k++)
-                {
+        for(i=0;i<m;i++) {
+            for(j=0;j<2;j++) {
+                for(k=0;k<2;k++) {
                     printf("%ld   ",multi[i].A[j][k]);
                     integer=multi[i].A[j][k];
                     fprintf(p,"%d",integer);
@@ -186,8 +164,7 @@ void main()
         printf("DO YOU WANT TO CONTINUE (Y or N) : ");
         scanf("%c",&con);
 
-        if(con=='y' || con=='Y')
-        {
+        if(con=='y' || con=='Y') {
             system("cls");
             goto label;
         }
@@ -216,12 +193,9 @@ void main()
 
             m=m/16;
             struct matrix mate[m],multie[m];
-            for(i=0;i<m;i++)
-            {
-                for(j=0;j<2;j++)
-                {
-                    for(k=0;k<2;k++)
-                    {
+            for(i=0;i<m;i++) {
+                for(j=0;j<2;j++) {
+                    for(k=0;k<2;k++) {
                         fscanf(p,"%d",&out);
 
                             mate[i].A[j][k]=out;
@@ -234,10 +208,8 @@ void main()
         printf("ENTER PASSWORD (2 X 2) MATRIX");
         int pasx=2,pasy=7;
         fflush(stdin);
-        for(j=0;j<2;j++)
-        {
-            for(k=0;k<2;k++)
-            {
+        for(j=0;j<2;j++) {
+            for(k=0;k<2;k++) {
                 gotoxy(pasx,pasy);
                 scanf("%ld",&pass[j][k]);
                 pasx=6;
@@ -249,12 +221,9 @@ void main()
         inpass[0][1]=(float)(0-(pass[0][1]/det));
         inpass[1][0]=(float)(0-(pass[1][0]/det));
         inpass[1][1]=(float)(pass[0][0]/det);
-        for(i=0;i<m;i++)
-        {
-            for(j=0;j<2;j++)
-            {
-                for(k=0;k<2;k++)
-                {
+        for(i=0;i<m;i++) {
+            for(j=0;j<2;j++) {
+                for(k=0;k<2;k++) {
                     for(n=0;n<2;n++)
                         sum=sum+((mate[i].A[j][n])*inpass[n][k]);
                         multie[i].A[j][k]=sum;
@@ -262,12 +231,9 @@ void main()
                 }
             }
         }
-        for(i=0;i<m;i++)
-        {
-            for(j=0;j<2;j++)
-            {
-                for(k=0;k<2;k++)
-                {
+        for(i=0;i<m;i++) {
+            for(j=0;j<2;j++) {
+                for(k=0;k<2;k++) {
                     str[t]=multie[i].A[j][k];
                     t++;
                 }
@@ -283,15 +249,13 @@ void main()
         printf("DO YOU WANT TO CONTINUE (Y OR N) : ");
         fflush(stdin);
         scanf("%c",&con);
-        if(con=='y' || con=='Y')
-        {
+        if(con=='y' || con=='Y') {
             system("cls");
             goto label;
         }
         break;
     }
-        default:
-            {
+        default: {
                 system("cls");
                 printf("You have pressed wrong option\nPlease try again............");
                 goto label2;
